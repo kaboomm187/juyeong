@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+<mapper namespace="Board">  
+ 	<select id="selectList" parameterType="map"  resultType="RestaurantDto">
+ 	                                
+ 	    SELECT  seq, writer, title, content,pwd,hit,regdate,filename
+    	    FROM(SELECT
+    		    a.*,
+    		        rownum rnum
+    		FROM (SELECT   *
+    				      FROM springboard2
+    				<where>  
+    					<if test="keyWord!=null and keyField=='title'">
+    						title like '%' || #{keyWord} || '%'					
+    					</if>
+    					<if test="keyWord!=null and keyField=='writer'">
+    						writer like '%' || #{keyWord} || '%'					
+    					</if>
+    					<if test="keyWord!=null and keyField=='content'">
+    						content like '%' || #{keyWord} || '%'					
+    					</if>
+						<if test="keyWord!=null and keyField=='all'">
+    						title like '%' || #{keyWord} || '%'	or
+    						writer like '%' || #{keyWord} || '%'	or	
+    						content like '%' || #{keyWord} || '%'				
+    					</if>
+    				</where>
+    				ORDER BY seq desc)a)
+	<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+	]]>
+ 	</select>
+ 	
+ 	<select id="selectCount" parameterType="map" resultType="Integer">
+ 	    SELECT  count(*)
+    	FROM springboard2
+    	<where>
+    					<if test="keyWord!=null and keyField=='title'">
+    						title like '%' || #{keyWord} || '%'					
+    					</if>
+    					<if test="keyWord!=null and keyField=='writer'">
+    						writer like '%' || #{keyWord} || '%'					
+    					</if>
+    					<if test="keyWord!=null and keyField=='content'">
+    						content like '%' || #{keyWord} || '%'					
+    					</if>
+						<if test="keyWord!=null and keyField=='all'">
+    						title like '%' || #{keyWord} || '%'	or
+    						writer like '%' || #{keyWord} || '%'	or	
+    						content like '%' || #{keyWord} || '%'				
+    					</if>
+    		</where>
+ 	</select>
+ 	
+	<!-- 최대값구하기  -->
+ 	<select id="getNewSeq" resultType="int">
+ 	    select max(seq) from springboard2
+ 	</select>
+ 	
+ 	<insert id="insertBoard" parameterType="RestaurantDto">
+ 	  insert into springboard2(seq,writer,title,content,pwd,hit,regdate,filename)
+ 	  values(#{seq},#{writer},#{title},#{content},#{pwd},0,sysdate,
+ 	  #{filename,jdbcType=VARCHAR})
+ 	</insert>
+ 	
+ 	<!--조회수 증가  -->
+ 	<update id="updateHit"  parameterType="Integer">
+ 	    update springboard2 set hit=hit+1 where seq=#{seq}
+ 	</update>
+ 	
+ 	<!-- 레코드 한개 얻어오기 -->
+ 	<select id="selectBoard" resultType="RestaurantDto"
+ 	                                      parameterType="Integer">
+ 	    select * from springboard2 where seq=#{seq}
+ 	</select>
+ 	
+ 	
+</mapper>

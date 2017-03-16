@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+<mapper namespace="Board">  
+ 	
+ 	<insert id="insertMember" parameterType="memDetInfoDto">
+ 	   insert into memDetInfo(memberId,birthDate,gender,phoneNum,emailcheck,selfintro,photopath,membertype,interestfood,nickname)
+ 	   values(#{memberId},#{birthDate},#{gender},#{phoneNum},#{emailCheck},#{selfIntro},#{photoPath},#{memberType},#{interestFood},#{nickname})
+ 	</insert>
+ 	
+</mapper>
