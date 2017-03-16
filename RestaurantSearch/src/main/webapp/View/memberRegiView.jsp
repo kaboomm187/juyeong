@@ -616,7 +616,7 @@
 									<div class="form-group">
 										<div class="col-md-6">
 											<label>패스워드</label>
-											<input type="password" name="password"  class="form-control">
+											<input type="password" name="password" class="form-control">
 										</div>
 										<div class="col-md-6">
 											<label>패스워드 확인</label>
