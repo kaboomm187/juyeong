@@ -76,5 +76,13 @@ public class MemSimInfoDto {
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "MemSimInfoDto[lonigCnt;="+lonigCnt+",accuPoint;="+accuPoint+",currPoint;="+
+		currPoint+",memberGrade="+memberGrade+",memberId="+memberId+",password="+password+
+		"lastLoginTime"+lastLoginTime+"registerDate"+registerDate+"]";
+	}
 
 }

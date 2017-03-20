@@ -101,7 +101,7 @@
 								
 								<!-- submit button -->
 								<span class="input-group-btn">
-									<button class="btn btn-primary">로그인</button>
+									<button class="btn btn-primary btn-xs">로그인</button>
 								</span>
 
 							</div>
