@@ -75,7 +75,7 @@
 			</button>
 
 			<!-- Logo text or image -->
-			<a class="logo" href="index.html"> <img
+			<a class="logo" href="restaurantMain.do"> <img
 				src="design/images/logo.png" alt="Atropos" />
 			</a>
 

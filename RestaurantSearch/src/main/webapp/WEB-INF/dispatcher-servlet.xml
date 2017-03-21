@@ -23,6 +23,7 @@
     <!-- 회원 목록보기  -->
     <bean class="restaurant.controller.MainViewController"/>
     <bean class="restaurant.controller.MemberRegiController"/>
+     <bean class="restaurant.controller.SearchViewController"/>
     <bean class="restaurant.dao.MemberDaoImpl" />
     
     <!-- 1.messageSource(리소스번들 파일) 유효성검사 문자열 메세지,자주사용 문구-->
